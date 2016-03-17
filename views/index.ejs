@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+<!-- define angular app -->
+<html ng-app="scotchApp">
+
+<head>
+  <!-- SCROLLS -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+
+  <!-- SPELLS -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.25/angular-route.js"></script>
+  <script src="/javascripts/ui-bootstrap-0.12.1.min.js"></script>
+  <script src="/javascripts/angularApp.js"></script>
+  
+  
+  <style>
+  		.verticalLine {
+    	border-left: 1px solid #acacac;
+    	height:400px;
+	}
+	</style>
+</head>
+
+<!-- define angular controller -->
+<body ng-controller="mainController">
+
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+       <!-- <a class="navbar-brand" href="/">PersonalInfo Manager</a> -->
+       <a class="navbar-brand">PersonalInfo Manager</a> 
+      </div>
+
+      <ul class="nav navbar-nav navbar-left">
+        <li><a href="#personalinfo"><i class="fa fa-user"></i> Persons</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+  
+  <script type="text/ng-template" id="/about.html">
+	  <div class="jumbotron text-center">
+		<h1>About Page</h1>
+		
+		<p>{{ message }}</p>
+	</div>
+  </script>
+  
+  
+  <script type="text/ng-template" id="/personalinfo.html">
+  <div style="padding:5px 5px;background:#f7f7f7;">
+  
+  	<table>
+  	<tr>
+  	<td width="50%" valign="top">
+  		<div class="form-group" style="border:1px solid #a1a1a1; background:#acacac; padding:5px 5px;margin-top:2px;border-radius:2px;">
+  		List of Personal Info</div>
+  		<div ng-repeat="person in listofpersons | orderBy:'fname'" >
+  				<div style="border:1px solid #a1a1a1;margin-top:2px;margin-left:15px;padding:2px 5px;background:#fefefe;width:94%;border-radius:2px;cursor:pointer;" ng-click="editPersonalDetail(person)">
+  				<p class="glyphicon glyphicon-edit" > {{person.fname}}</p>
+  		</div>
+  	</td>
+  	<td width="50%" valign="top">
+	  	<form ng-submit="updatePersonalInfo()">
+    		<div class="form-group" style="border:1px solid #a1a1a1; background:#ffffff; padding:30px 30px;margin-top:2px;border-radius:2px;">
+    			<table>
+    			<tr>
+    			<td>
+    			<table width=600>
+    				<tr>
+    					<td width=120>
+    						<span>First Name</span>
+    					</td>
+    					<td>
+    						<div class="col-sm-10">
+    						<input type="text" class="form-control" placeholder="First Name" ng-model="person_details.fname"></input>
+    						</div
+    					</td>
+    				</tr>
+    				<tr>
+    					<td>
+    						<span>Last Name</span>
+    					</td>
+    					<td>
+    						<div class="col-sm-10">
+    						<input type="text" class="form-control" placeholder="Last Name" ng-model="person_details.lname"></input>
+    						</div>
+    					</td>
+    				</tr>
+    				<tr>
+    					<td>
+    						<span>Date of Birth</span>
+    					</td>
+    					<td>
+    						<div class="col-sm-10">
+    						<input type="text" class="form-control" placeholder="Date of Birth" ng-model="person_details.dob"></input>
+    						</div>
+    					</td>
+    				</tr>
+    				
+    				<tr>
+    					<td>
+    						<span>Gender [Male/Female/Other]</span>
+    					</td>
+    					<td>
+    						<div class="col-sm-10">
+    						<input type="text" class="form-control" placeholder="Gender" ng-model="person_details.gender"></input>
+    						</div>
+    					</td>
+    				</tr>
+    				
+    				<tr>
+	    			<td colspan=2>
+	    			<button type="submit" class="btn btn-primary">{{buttontext}}</button>
+	    			</td>
+	    			</tr>
+    			</table>
+    		</div>
+    	</form>
+    </td>
+    </tr>
+    <table>
+    </div>
+    </div>
+  </script>
+  
+  <script type="text/ng-template" id="/contact.html">
+	  <div class="jumbotron text-center">
+		<h1>Contact Page</h1>
+		
+		<p>{{ message }}</p>
+	  </div>
+  </script>
+  
+  <div id="main" class="col-md-10 col-md-offset-1">
+    <div ng-view></div>
+    <footer class="text-center">
+    <p style="font-size:10px;">(c) 2015 PersonalInfo Manager</p>
+  	</footer>
+  </div>
+  
+  
+</body>
+
+</html>
